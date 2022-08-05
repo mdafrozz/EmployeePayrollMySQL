@@ -9,4 +9,6 @@ public class Constants {
     public final String FETCH_EMP_DATA = "select * from employee_payroll";
     public final String EMP_UPDATE_SALARY = "update employee_payroll set basic_pay=?,"
             + "deduction=?, taxable_pay=?, income_tax=?, net_pay=? where id=?";
+    public final String EMP_DATA_BASED_ON_JOIN_DATE = "SELECT * FROM employee_payroll where " +
+            "startDate between CAST(? AS DATE) AND CAST(? AS DATE)";
 }

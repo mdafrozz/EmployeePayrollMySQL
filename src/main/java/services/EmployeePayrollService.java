@@ -111,4 +111,46 @@ public class EmployeePayrollService {
             e.printStackTrace();
         }
     }
+    /* GET SALARY DETAILS BY GENDER */
+    public void getSalaryByGender() {
+        try {
+            PreparedStatement psSum = connection.prepareStatement(constants.EMP_SALARY_GROUP_BY_GENDER); // SUM
+            ResultSet rsSum = psSum.executeQuery();
+            while (rsSum.next()) {
+                System.out.println("Gender: " + rsSum.getString("gender"));
+                System.out.println("Sum of salary: " + rsSum.getDouble("SUM(s.basic_pay)"));
+            }
+
+            PreparedStatement psMax = connection.prepareStatement(constants.MAX_EMP_SALARY_BY_GENDER); // MAX
+            ResultSet rsMax = psMax.executeQuery();
+            while (rsMax.next()) {
+                System.out.println("Gender: " + rsMax.getString("gender"));
+                System.out.println("Maximum salary: " + rsMax.getDouble("MAX(s.basic_pay)"));
+            }
+
+            PreparedStatement psMin = connection.prepareStatement(constants.MIN_EMP_SALARY_BY_GENDER); // MIN
+            ResultSet rsMin = psMin.executeQuery();
+            while (rsMin.next()) {
+                System.out.println("Gender: " + rsMin.getString("gender"));
+                System.out.println("Minimum salary: " + rsMin.getDouble("MIN(s.basic_pay)"));
+            }
+
+            PreparedStatement psAvg = connection.prepareStatement(constants.AVG_EMP_SALARY_BY_GENDER); // AVG
+            ResultSet rsAvg = psAvg.executeQuery();
+            while (rsAvg.next()) {
+                System.out.println("Gender: " + rsAvg.getString("gender"));
+                System.out.println("Average salary: " + Util.formatDoubleValue(rsAvg.getDouble("AVG(s.basic_pay)")));
+            }
+
+            PreparedStatement psCount = connection.prepareStatement(constants.COUNT_EMP_SALARY_BY_GENDER); // COUNT
+            ResultSet rsCount = psCount.executeQuery();
+            while (rsCount.next()) {
+                System.out.println("Gender: " + rsCount.getString("gender"));
+                System.out.println("Count of genders: " + rsCount.getInt("COUNT(s.basic_pay)"));
+            }
+            System.out.println("<--------------------------------------------------->");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -20,6 +20,9 @@ public class EmployeePayroll {
         employeePayrollService.updateSalary(payrollDbService.getConnection());
         System.out.println("<---------------- Get data with date range ---------------->");
         employeePayrollService.getEmpDataWithDateRange("2022-06-10", "2022-06-25");
+        System.out.println("<---------------- Get salary by gender ---------------->");
+        employeePayrollService.getSalaryByGender();
+
     }
 
 }

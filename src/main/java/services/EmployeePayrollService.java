@@ -8,6 +8,7 @@ import model.Employee;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class EmployeePayrollService {
     static PayrollDBService payrollDbService;
@@ -152,5 +153,41 @@ public class EmployeePayrollService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /* ADD NEW EMPLOYEE DATA */
+    public void addNewEmployees() {
+        Scanner sc = new Scanner(System.in);
+        try {
+            PreparedStatement ps = connection.prepareStatement(constants.NEW_EMP_ADD);
+            System.out.println("Enter the employee name: ");
+            String name = sc.nextLine();
+            ps.setString(1, name);
+
+            System.out.println("Enter the gender (M/F): ");
+            ps.setString(2, sc.nextLine());
+
+            System.out.println("Enter the joining date (YYYY-MM-DD): ");
+            Date joinDate = Date.valueOf(sc.nextLine());
+            ps.setDate(3, joinDate);
+
+            System.out.println("Enter the phone number: ");
+            ps.setString(4, sc.nextLine());
+
+            System.out.println("Enter the address: ");
+            ps.setString(5, sc.nextLine());
+
+            int status = ps.executeUpdate();
+
+            if(status > 0) {
+                System.out.println("Employee added successfully.");
+            }else {
+                System.out.println("There is some error occurs.");
+            }
+            System.out.println("<--------------------------------------------------->");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        sc.close();
     }
 }

@@ -23,6 +23,8 @@ public class EmployeePayroll {
         System.out.println("<---------------- Get salary by gender ---------------->");
         employeePayrollService.getSalaryByGender();
 
+        System.out.println("<---------------- Add new employee ---------------->");
+        employeePayrollService.addNewEmployees();
     }
 
 }

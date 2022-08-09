@@ -17,5 +17,7 @@ public class Constants {
     public final String MIN_EMP_SALARY_BY_GENDER = "select ep.gender, MIN(s.basic_pay) from employee_payroll ep, salary_tbl s where ep.id=s.emp_id GROUP BY gender";
     public final String AVG_EMP_SALARY_BY_GENDER = "select ep.gender, AVG(s.basic_pay) from employee_payroll ep, salary_tbl s where ep.id=s.emp_id GROUP BY gender";
     public final String COUNT_EMP_SALARY_BY_GENDER = "select ep.gender, COUNT(s.basic_pay) from employee_payroll ep, salary_tbl s where ep.id=s.emp_id GROUP BY gender";
+
+    public final String NEW_EMP_ADD = "insert into employee_payroll (name, gender, startDate, phoneno, address) values (?,?,?,?,?);";
 }
 
